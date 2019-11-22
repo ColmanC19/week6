@@ -2,6 +2,7 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
+import { Doctor } from "./doctor.js";
 
 $(document).ready(function(){
 
@@ -9,7 +10,7 @@ $(document).ready(function(){
     $("#name").text(name);
 
     name.forEach(function(name){
-      $("#name").append(`<li>${name.data.practices} : ${name.name}</li>`);
+      $("#name").append(`<li>${name.data.practices.name}</li>`);
     })
     address.forEach(function(address){
       $("#office").append(`<li>${address.data.practices.visit_address}</li>`)
@@ -17,9 +18,6 @@ $(document).ready(function(){
     phoneNumber.forEach(function(phoneNumber){
       $("#phone").append(`<li>${phoneNumber.data.practices.phones} : ${phoneNumber.number}</li>`)
     })
-    // website.forEach(function(website){
-    //   $("#website").append(`<li>${website.data.practices.} : ${}</li>`)
-    // })
     newPatients.forEach(function(newPatients){
       $("#patients").append(`<li>${newPatients.data.practices.accepts_new_patients} : ${newPatients.accepts_new_patients}</li>`)
     })
@@ -47,4 +45,5 @@ $(document).ready(function(){
         let website = response.data[i].
       }
     }
+
 });
