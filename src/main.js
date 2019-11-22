@@ -39,7 +39,7 @@ $(document).ready(function(){
   });
 
     function getElements(response) {
-      let keys = Object.keys(response.data);
+      let description = Object.description(response.data);
       for (let i=0; i < keys.length; i++) {
         let name = response.data[i].practices.name;
         let address = response.data[i].practices.visit_address;
