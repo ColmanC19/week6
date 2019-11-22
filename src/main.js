@@ -13,37 +13,45 @@ $(document).ready(function(){
       $("#name").append(`<li>${name.data.practices.name}</li>`);
     })
     address.forEach(function(address){
-      $("#office").append(`<li>${address.data.practices.visit_address}</li>`)
+      $("#office").append(`<li>${address.data.practices.visit_address}</li>`);
     })
     phoneNumber.forEach(function(phoneNumber){
-      $("#phone").append(`<li>${phoneNumber.data.practices.phones} : ${phoneNumber.number}</li>`)
+      $("#phone").append(`<li>${phoneNumber.data.practices.phones} : ${phoneNumber.number}</li>`);
     })
     newPatients.forEach(function(newPatients){
-      $("#patients").append(`<li>${newPatients.data.practices.accepts_new_patients} : ${newPatients.accepts_new_patients}</li>`)
+      $("#patients").append(`<li>${newPatients.data.practices.accepts_new_patients} : ${newPatients.accepts_new_patients}</li>`);
     })
   }
-
+  
 
 
 
 
   $("form.docFinder").submit(function(event){
     event.preventDefault();
+    let illness = $("#needs").val();
     (async () => {
-      let doctor = new Doctor();
-      const response = await doctor.getDoctor(illness);
+      let doctor = new DoctorService();
+      const response = await doctorService.getResponse(illness);
       getElements(response);
     })();
   });
 
-    function getElements(response) {
-      let description = Object.description(response.data);
-      for (let i=0; i < description.length; i++) {
-        let name = response.data[i].practices.name;
-        let address = response.data[i].practices.visit_address;
-        let phoneNumber = response.data[i].practices.phones.number;
-        let website = response.data[i].
+  // function getElements(response) {
+    //   let description = Object.description(response.data);
+    //   for (let i=0; i < description.length; i++) {
+      //     let name = response.data[i].practices.name;
+      //     let address = response.data[i].practices.visit_address;
+      //     let phoneNumber = response.data[i].practices.phones.number;
+      //   }
+      // }
+      function getElements(response) {
+        let name = response.name;
+        let address = response.visit_address;
+        let phoneNumber = response.phones.number;
+        let newPatients = response.newPatients;
+        console.log(response);
+        updateDoctor(name, address, phoneNumber, newPatients);
       }
-    }
 
-});
+    });
