@@ -33,18 +33,18 @@ $(document).ready(function(){
     event.preventDefault();
     (async () => {
       let doctor = new Doctor();
-      let response = await doctor.getDoctor(illness);
+      const response = await doctor.getDoctor(illness);
       getElements(response);
     })();
+  });
 
     function getElements(response) {
       let keys = Object.keys(response.data);
-      for (let i=0; i < keys.length; i++){
+      for (let i=0; i < keys.length; i++) {
         let name = response.data[i].practices.name;
         let address = response.data[i].practices.visit_address;
         let phoneNumber = response.data[i].practices.phones.number;
         let website = response.data[i].
       }
     }
-  });
 });
