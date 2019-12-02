@@ -5,7 +5,7 @@ import './styles.css';
 import { DoctorService } from "./doctor.js";
 
 $(document).ready(function(){
-
+    // console.log(require('dotenv').config());
   // console.log("hey");
   let updateDoctor = (name, address, phoneNumber, newPatients) => {
     this.name = name;
@@ -46,10 +46,12 @@ $(document).ready(function(){
 
   $("form.docFinder").submit(function(event){
     event.preventDefault();
+    // console.log(process.env.API_KEY);
     let search = $("#search").val();
+    // console.log(search);
     (async () => {
-      let doctorservice = new DoctorService();
-      const response = await doctorservice.getResponse(search);
+      let doctorservice = new DoctorService(search);
+      const response = await doctorservice.getResponse();
       getElements(response);
     })();
   });
@@ -65,10 +67,11 @@ $(document).ready(function(){
   function getElements(response) {
     let name = response.name;
     let address = response.visit_address;
-    let phoneNumber = response.phones.number;
+    // let phoneNumber = response.phones.number;
+    let phoneNumber = response.phones;
     let newPatients = response.newPatients;
-    console.log(response);
-    updateDoctor(name, address, phoneNumber, newPatients);
+    // console.log(name);
+    return updateDoctor(name, address, phoneNumber, newPatients);
   }
 
 });
