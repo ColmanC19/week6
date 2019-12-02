@@ -14,27 +14,18 @@ $(document).ready(function(){
     this.newPatients = newPatients;
     $("#name").text(name);
 
-    // name.forEach(function(name){
-    //   $("#name").append(`<li>${name.data.practices.name}</li>`);
-    // });
     name.forEach(function(name){
       $("#name").append(`<li>${name.practice.name}</li>`);
     });
-    // address.forEach(function(address){
-    //   $("#office").append(`<li>${address.data.practices.visit_address}</li>`);
-    // });
+
     address.forEach(function(address){
       $("#office").append(`<li>${address.practice.visit_address}</li>`);
     });
-    // phoneNumber.forEach(function(phoneNumber){
-    //   $("#phone").append(`<li>${phoneNumber.data.practices.phones} : ${phoneNumber.number}</li>`);
-    // });
+
     phoneNumber.forEach(function(phoneNumber){
       $("#phone").append(`<li>${phoneNumber.practice.phones} : ${phoneNumber.number}</li>`);
     });
-    // newPatients.forEach(function(newPatients){
-    //   $("#patients").append(`<li>${newPatients.data.practices.accepts_new_patients} : ${newPatients.accepts_new_patients}</li>`);
-    // });
+
     newPatients.forEach(function(newPatients){
       $("#patients").append(`<li>${newPatients.practice.accepts_new_patients} : ${newPatients.accepts_new_patients}</li>`);
     });
@@ -46,9 +37,7 @@ $(document).ready(function(){
 
   $("form.docFinder").submit(function(event){
     event.preventDefault();
-    // console.log(process.env.API_KEY);
     let search = $("#search").val();
-    // console.log(search);
     (async () => {
       let doctorservice = new DoctorService(search);
       const response = await doctorservice.getResponse();
@@ -67,10 +56,8 @@ $(document).ready(function(){
   function getElements(response) {
     let name = response.name;
     let address = response.visit_address;
-    // let phoneNumber = response.phones.number;
     let phoneNumber = response.phones;
     let newPatients = response.newPatients;
-    // console.log(name);
     return updateDoctor(name, address, phoneNumber, newPatients);
   }
 
