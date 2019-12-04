@@ -6,33 +6,16 @@ import { DoctorService } from "./doctor.js";
 
 $(document).ready(function(){
   let updateDoctor = (firstName, lastName, streetAddress, cityAddress, stateAddress, zipAddress, phoneNumber, website, accepts) => {
-    // this.name = name;
-    // this.address = address;
-    // this.phoneNumber = phoneNumber;
-    // this.newPatients = newPatients;
     let createDocDisplay = document.createElement("p");
     let pushName = document.createTextNode(firstName + " " + lastName + ". " + "Office information: " + streetAddress + ", " + cityAddress + ", " + stateAddress + ", " + zipAddress + ", " + phoneNumber + ", " + website + ", " + accepts);
     createDocDisplay.appendChild(pushName);
     let element = document.getElementById("docDisplay");
     element.appendChild(createDocDisplay);
+    $("#search").val("");
 
-    // firstName.forEach(function(name){
-    //   $("#name").append(`<li>"Doc Name": + ${name.practice.name}</li>`);
-    // });
-    //
-    // address.forEach(function(address){
-    //   $("#office").append(`<li>${address.practice.visit_address}</li>`);
-    // });
-    //
-    // phoneNumber.forEach(function(numbers){
-    //   $("#phone").append(`<li>${numbers.practice.phones} : ${phoneNumber.number}</li>`);
-    // });
-    //
-    // accepts.forEach(function(newPatient){
-    //   $("#patients").append(`<li>${newPatients.practice.accepts_new_patients} : ${newPatients.accepts_new_patients}</li>`);
-    // });
   };
   $("form.docFinder").submit(function(event){
+    $("#docDisplay").text("");
     event.preventDefault();
     let search = $("#search").val();
     (async () => {
@@ -60,14 +43,7 @@ $(document).ready(function(){
       let phoneNumber = practice.phones[0].number;
       let website = practice.website;
       let accepts = practice.accepts_new_patients;
-
-
-
-
       updateDoctor(firstName, lastName, streetAddress, cityAddress, stateAddress, zipAddress, phoneNumber, website, accepts);
     }
-
-
   }
-
 });
