@@ -1,5 +1,5 @@
 export class DoctorService {
-  constructor(search, name) {
+  constructor(search) {
     this.search = search;
   }
   async getResponse() {
