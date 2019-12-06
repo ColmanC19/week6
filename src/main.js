@@ -12,8 +12,8 @@ $(document).ready(function(){
     let element = document.getElementById("docDisplay");
     element.appendChild(createDocDisplay);
     $("#search").val("");
-
   };
+
   $("form.docFinder").submit(function(event){
     $("#docDisplay").text("");
     event.preventDefault();
@@ -21,6 +21,10 @@ $(document).ready(function(){
     (async () => {
       let doctorService = new DoctorService(search);
       const response = await doctorService.getResponse();
+      if (response === "There seems to be an error. Check the API key to ensure it is live.") {
+        return $("#error").text("There seems to be an error. Check the API key to ensure it is live.");
+
+      }
       getElements(response);
       console.log(response);
     })();
