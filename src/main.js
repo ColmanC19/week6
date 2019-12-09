@@ -7,7 +7,7 @@ import { DoctorService } from "./doctor.js";
 $(document).ready(function(){
   let updateDoctor = (firstName, lastName, streetAddress, cityAddress, stateAddress, zipAddress, phoneNumber, website, accepts) => {
     let createDocDisplay = document.createElement("p");
-    let pushName = document.createTextNode(firstName + " " + lastName + ". " + "Office information: " + streetAddress + ", " + cityAddress + ", " + stateAddress + ", " + zipAddress + ", " + phoneNumber + ", " + website + ", " + accepts);
+    let pushName = document.createTextNode(firstName + " " + lastName + ". Office information: " + streetAddress + ", " + cityAddress + ", " + stateAddress + ", " + zipAddress + ", " + phoneNumber + ", " + "Website: " + website + ", " + "Accepting new Patients at this time? " + accepts);
     createDocDisplay.appendChild(pushName);
     let element = document.getElementById("docDisplay");
     element.appendChild(createDocDisplay);
