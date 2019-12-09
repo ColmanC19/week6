@@ -23,7 +23,8 @@ $(document).ready(function(){
       const response = await doctorService.getResponse();
       if (response === "There seems to be an error. Check the API key to ensure it is live.") {
         return $("#error").text("There seems to be an error. Check the API key to ensure it is live.");
-
+      } else if (response.data === undefined || response.data.length === 0 ) {
+        return $("#docDisplay").text("No doctors within your area. Please type in another search query or be more specific in your request.");
       }
       getElements(response);
       console.log(response);
